@@ -1,87 +1,539 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Fournix - Fourniture de matériaux de chantier | Maroc</title>
-  <meta name="description" content="Fournix : Votre spécialiste de la fourniture de matériaux de chantier au Maroc. Stockage, livraison rapide, large choix de produits. Devis gratuit." />
-  <link rel="canonical" href="https://fournix.ma" />
-  <meta name="theme-color" content="#e67e22" />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Fournix - Fourniture de matériaux de chantier" />
-  <meta property="og:description" content="Votre partenaire pour la fourniture de matériaux de chantier au Maroc. Stockage, livraison rapide, large choix de produits." />
-  <meta property="og:image" content="assets/logo.png" />
-  <meta property="og:url" content="https://fournix.ma" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- SEO basics -->
-  <meta name="robots" content="index,follow" />
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
-
+  <meta name="description" content="Fournix : Votre spécialiste de la fourniture de matériaux de chantier au Maroc. Stockage, livraison rapide, large choix de produits.">
+  <meta name="theme-color" content="#e67e22">
+  
   <!-- Styles -->
-  <link rel="preload" href="styles.css" as="style" />
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Structured data (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Fournix",
-    "image": "assets/logo.svg",
-    "url": "https://fournix.ma",
-    "telephone": "+212 5XX XXX XXX",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Casablanca",
-      "addressRegion": "Casablanca-Settat",
-      "postalCode": "20000",
-      "addressCountry": "MA"
-    },
-    "sameAs": []
-  }
-  </script>
+  <style>
+    /* ========== RESET & BASE ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    /* Thème clair (défaut) */
+    body.light-theme {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --text-primary: #333333;
+      --text-secondary: #666666;
+      --border: #e0e0e0;
+      --card-bg: #ffffff;
+      --header-bg: #ffffff;
+      --footer-bg: #1a1a2e;
+      --footer-text: #ffffff;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+    
+    /* Thème sombre */
+    body.dark-theme {
+      --bg-primary: #1a1a2e;
+      --bg-secondary: #16213e;
+      --text-primary: #eeeeee;
+      --text-secondary: #cccccc;
+      --border: #333333;
+      --card-bg: #0f3460;
+      --header-bg: #0f3460;
+      --footer-bg: #0a0a1a;
+      --footer-text: #dddddd;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+    
+    /* ========== VARIABLES COULEURS ========== */
+    :root {
+      --orange: #e67e22;
+      --orange-dark: #d35400;
+      --red: #c0392b;
+      --red-dark: #a93226;
+      --white: #ffffff;
+      --shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    /* ========== TYPOGRAPHIE ========== */
+    h1, h2, h3 {
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    
+    h1 { font-size: clamp(1.8rem, 5vw, 3rem); }
+    h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 1rem; }
+    h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: 0.5rem; }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: var(--orange);
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+    }
+    
+    /* ========== LAYOUT ========== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .section {
+      padding: 60px 0;
+    }
+    
+    .section.alt {
+      background-color: var(--bg-secondary);
+    }
+    
+    /* ========== HEADER & MENU ========== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      background-color: var(--header-bg);
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+    
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--orange);
+    }
+    
+    .logo img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+    
+    /* Navigation desktop */
+    .nav {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+    
+    .nav a {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav a:hover {
+      color: var(--orange);
+    }
+    
+    /* Bouton menu mobile (hamburger) */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+    
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+    
+    /* ========== HERO SECTION ========== */
+    .hero {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--red) 100%);
+      color: white;
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    
+    .hero-copy h1 {
+      margin-bottom: 20px;
+    }
+    
+    .hero-copy .lead {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      opacity: 0.95;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn-primary {
+      background-color: var(--white);
+      color: var(--orange);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .btn-outline {
+      border: 2px solid var(--white);
+      color: var(--white);
+      background: transparent;
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--white);
+      color: var(--orange);
+    }
+    
+    .trust {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .trust li {
+      font-size: 0.9rem;
+    }
+    
+    .hero-media img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+    }
+    
+    /* ========== CARDS SERVICES ========== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    
+    .card {
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: var(--shadow);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    
+    .icon svg {
+      width: 50px;
+      height: 50px;
+      color: var(--orange);
+      margin-bottom: 15px;
+    }
+    
+    /* ========== ABOUT ========== */
+    .about {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .bullets {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+      list-style: none;
+    }
+    
+    .bullets li {
+      background-color: var(--orange);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+    }
+    
+    /* ========== PORTFOLIO PRODUITS ========== */
+    .portfolio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    
+    .work {
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+    
+    .work:hover {
+      transform: translateY(-5px);
+    }
+    
+    .work img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .work figcaption {
+      padding: 15px;
+      text-align: center;
+    }
+    
+    /* ========== CONTACT ========== */
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    
+    .info-card {
+      background-color: var(--card-bg);
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    
+    .info-card .icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    
+    .form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+    }
+    
+    .field {
+      margin-bottom: 20px;
+    }
+    
+    .field label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: inherit;
+    }
+    
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--orange);
+    }
+    
+    .form-msg {
+      margin-top: 15px;
+      text-align: center;
+    }
+    
+    .hp {
+      display: none;
+    }
+    
+    /* ========== FOOTER ========== */
+    .site-footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      padding: 40px 0 20px;
+    }
+    
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .footer-nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-nav a {
+      color: var(--footer-text);
+      text-decoration: none;
+    }
+    
+    .footer-nav a:hover {
+      color: var(--orange);
+    }
+    
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      
+      .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background-color: var(--header-bg);
+        padding: 20px;
+        box-shadow: var(--shadow);
+        gap: 15px;
+      }
+      
+      .nav.open {
+        display: flex;
+      }
+      
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .hero-cta {
+        justify-content: center;
+      }
+      
+      .trust {
+        justify-content: center;
+      }
+      
+      .section {
+        padding: 40px 0;
+      }
+      
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-nav {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header-inner {
+        padding: 10px 15px;
+      }
+      
+      .btn {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+      }
+      
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
-<body>
-  <!-- Lien d'accès rapide pour l'accessibilité -->
-  <a class="skip-link" href="#main">Aller au contenu</a>
+<body class="light-theme">
+  <!-- Skip link accessibilité -->
+  <a class="skip-link" href="#main" style="position: absolute; top: -40px; left: 0; background: var(--orange); color: white; padding: 8px; z-index: 1001;">Aller au contenu</a>
 
-  <!-- Header -->
+  <!-- Header avec menu responsive -->
   <header class="site-header">
-    <div class="container header-inner">
-      <a href="#" class="logo" aria-label="Accueil">
-        <!-- CHANGEZ ICI : remplacez 'assets/logo.svg' par le chemin de VOTRE logo -->
-        <img src="assets/logo.png" alt="Fournix Logo" width="36" height="36" />
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <!-- Logo temporaire (emoji) - remplacez par votre image -->
+        <span style="font-size: 32px;">🏗️</span>
         <span class="brand">Fournix</span>
       </a>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="nav" id="menuToggle">
-        <span class="sr-only">Ouvrir le menu</span>
-        ☰
-      </button>
-      <nav id="nav" class="nav">
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+      <nav class="nav" id="mainNav">
         <a href="#services">Services</a>
         <a href="#apropos">À propos</a>
         <a href="#portfolio">Nos produits</a>
         <a href="#contact">Contact</a>
-        <button id="themeToggle" class="theme-toggle" aria-label="Basculer le thème">🌓</button>
+        <button id="themeToggle" class="theme-toggle" aria-label="Changer de thème">🌙</button>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-copy">
-        <h1>Fournix - Votre spécialiste des matériaux de chantier au Maroc</h1>
-        <p class="lead">
-          Stockage, livraison rapide et large choix de produits pour tous vos projets de construction.
-          Devis gratuit en 24h.
-        </p>
+        <h1>Fournix - Spécialiste des matériaux de chantier</h1>
+        <p class="lead">Stockage, livraison rapide et large choix de produits pour tous vos projets de construction au Maroc.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#contact">Demander un devis</a>
-          <a class="btn btn-outline" href="#services">Nos services</a>
+          <a class="btn btn-primary" href="#contact">📞 Demander un devis</a>
+          <a class="btn btn-outline" href="#services">📦 Nos services</a>
         </div>
         <ul class="trust">
           <li>✅ Stockage sur 50.000 m²</li>
@@ -89,64 +541,47 @@
           <li>✅ Plus de 15.000 références</li>
         </ul>
       </div>
-      <!-- Image d'illustration: remplacez par vos propres images -->
       <div class="hero-media">
-        <img src="https://images.pexels.com/photos/4493406/pexels-photo-4493406.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Entrepôt de matériaux de chantier" loading="eager" />
+        <img src="https://images.pexels.com/photos/4493406/pexels-photo-4493406.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Entrepôt de matériaux de chantier" loading="eager">
       </div>
     </div>
   </section>
 
   <main id="main">
-    <!-- Section Services -->
+    <!-- Services Section -->
     <section id="services" class="section">
       <div class="container">
         <h2 class="section-title">Nos services</h2>
         <p class="section-subtitle">Des solutions adaptées à vos besoins de chantier.</p>
         <div class="grid cards">
           <article class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor" role="img" aria-label="Stockage">
-                <path d="M3 4h18v12H3zM3 18h18v2H3zM7 6h2v2H7zM11 6h6v2h-6zM7 9h10v2H7z" />
-              </svg>
-            </div>
+            <div class="icon">🏗️</div>
             <h3>Stockage</h3>
-            <p>Implantés à Mohammedia sur 2 sites totalisant 50.000 m² de plateformes dont 10.000 m² couverts, avec entrepôts modernes et optimisés.</p>
+            <p>50.000 m² de plateformes dont 10.000 m² couverts, avec entrepôts modernes et optimisés.</p>
           </article>
           <article class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor" role="img" aria-label="Livraison">
-                <path d="M8 5l-6 7 6 7M16 5l6 7-6 7" />
-              </svg>
-            </div>
+            <div class="icon">🚚</div>
             <h3>Livraison rapide</h3>
-            <p>Recevez rapidement vos produits sur votre chantier grâce à une flotte de véhicules adaptée à tous types de chantiers sur tout le Royaume.</p>
+            <p>Flotte de véhicules adaptée pour une livraison rapide et sécurisée sur tout le Maroc.</p>
           </article>
           <article class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor" role="img" aria-label="Large choix">
-                <path d="M3 3h18v4H3zM3 9h12v12H3zM17 9h4v12h-4z" />
-              </svg>
-            </div>
+            <div class="icon">📦</div>
             <h3>Large choix de produits</h3>
-            <p>Sélectionnez les produits recherchés parmi une base de plus de 15.000 références proposées par les meilleures marques du marché.</p>
+            <p>Plus de 15.000 références des meilleures marques à prix compétitifs.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Section À propos -->
+    <!-- About Section -->
     <section id="apropos" class="section alt">
       <div class="container">
         <h2 class="section-title">À propos de Fournix</h2>
         <div class="about">
-          <p>
-            Fournix est le spécialiste de la fourniture de matériaux pour la conception des bâtiments au Maroc.
-            Forts de notre expérience et de notre engagement qualité, nous vous proposons une large gamme 
-            de produits pour tous vos chantiers, de la fondation à la finition.
-          </p>
+          <p>Fournix est le spécialiste de la fourniture de matériaux pour la conception des bâtiments au Maroc. Forts de notre expérience, nous vous proposons une large gamme de produits pour tous vos chantiers, de la fondation à la finition.</p>
           <ul class="bullets">
-            <li>✓ 50.000 m² de stockage</li>  
-            <li>✓ 15.000+ références disponibles</li>
+            <li>✓ 50.000 m² de stockage</li>
+            <li>✓ 15.000+ références</li>
             <li>✓ Livraison sur tout le Maroc</li>
             <li>✓ Prix compétitifs</li>
           </ul>
@@ -154,35 +589,28 @@
       </div>
     </section>
 
-    <!-- Section Portfolio / Produits -->
+    <!-- Products Section -->
     <section id="portfolio" class="section">
       <div class="container">
         <h2 class="section-title">Nos produits</h2>
         <p class="section-subtitle">Découvrez notre sélection de matériaux de qualité.</p>
-        <div class="grid portfolio">
+        <div class="portfolio">
           <figure class="work">
-            <img src="https://images.pexels.com/photos/1112496/pexels-photo-1112496.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Ferraillage" loading="lazy" />
-            <figcaption>
-              <h3>Ferraillage</h3>
-              <p>Fers à béton, treillis soudés, armatures pour tous types de construction.</p>
-            </figcaption>
-          </figure>
-           <figure class="work">
-            <img src="https://images.pexels.com/photos/1112496/pexels-photo-1112496.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Ferraillage" loading="lazy" />
+            <img src="https://images.pexels.com/photos/1112496/pexels-photo-1112496.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ferraillage">
             <figcaption>
               <h3>Ferraillage</h3>
               <p>Fers à béton, treillis soudés, armatures pour tous types de construction.</p>
             </figcaption>
           </figure>
           <figure class="work">
-            <img src="https://images.pexels.com/photos/259619/pexels-photo-259619.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Bois et panneaux" loading="lazy" />
+            <img src="https://images.pexels.com/photos/259619/pexels-photo-259619.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Bois et panneaux">
             <figcaption>
               <h3>Bois et panneaux</h3>
               <p>Bois de charpente, contreplaqués, panneaux OSB pour vos coffrages.</p>
             </figcaption>
           </figure>
           <figure class="work">
-            <img src="https://images.pexels.com/photos/210171/pexels-photo-210171.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Outillage professionnel" loading="lazy" />
+            <img src="https://images.pexels.com/photos/210171/pexels-photo-210171.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Outillage professionnel">
             <figcaption>
               <h3>Outillage</h3>
               <p>Outillage professionnel pour le bâtiment et les travaux publics.</p>
@@ -192,43 +620,56 @@
       </div>
     </section>
 
-    <!-- Section Contact -->
+    <!-- Contact Section -->
     <section id="contact" class="section alt">
       <div class="container">
         <h2 class="section-title">Contactez-nous</h2>
         <p class="section-subtitle">Un devis ? Une question ? Notre équipe vous répond sous 24h.</p>
         
-        <!-- Coordonnées -->
-        <div style="margin-bottom: 2rem; text-align: center;">
-          <p>📍 <strong>Adresse :</strong> Route 111, Lotissement Mesbahia, Zone Industrielle – Mohammedia, Maroc</p>
-          <p>📞 <strong>Téléphone :</strong> +212 523 322 462</p>
-          <p>📧 <strong>Email :</strong> contact@fournix.ma</p>
-          <p>🕒 <strong>Horaires :</strong> Lundi-Vendredi : 8h30-12h30 & 13h30-18h00 | Samedi : 8h30-12h30</p>
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="icon">📍</div>
+            <h3>Adresse</h3>
+            <p>Route 111, Lotissement Mesbahia<br>Zone Industrielle – Mohammedia<br>Maroc</p>
+          </div>
+          <div class="info-card">
+            <div class="icon">📞</div>
+            <h3>Téléphone</h3>
+            <p>+212 523 322 462</p>
+          </div>
+          <div class="info-card">
+            <div class="icon">📧</div>
+            <h3>Email</h3>
+            <p>contact@fournix.ma</p>
+          </div>
+          <div class="info-card">
+            <div class="icon">🕒</div>
+            <h3>Horaires</h3>
+            <p>Lun-Ven: 8h30-12h30 & 13h30-18h00<br>Sam: 8h30-12h30</p>
+          </div>
         </div>
         
         <form id="contactForm" class="form" action="https://formspree.io/f/xxxxx" method="POST">
-          <input type="hidden" name="_subject" value="Nouvelle demande de devis - Fournix" />
-          <input type="hidden" name="_replyto" id="_replyto" />
-          <!-- Champ honeypot anti spam -->
-          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="_subject" value="Nouvelle demande de devis - Fournix">
+          <input type="text" name="_gotcha" class="hp">
           <div class="field">
-            <label for="name">Nom complet*</label>
-            <input id="name" name="name" type="text" required placeholder="Votre nom" />
+            <label for="name">Nom complet *</label>
+            <input type="text" id="name" name="name" required placeholder="Votre nom">
           </div>
           <div class="field">
-            <label for="email">Email*</label>
-            <input id="email" name="email" type="email" required placeholder="votre@email.com" />
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.com">
           </div>
           <div class="field">
             <label for="phone">Téléphone</label>
-            <input id="phone" name="phone" type="tel" placeholder="Votre numéro de téléphone" />
+            <input type="tel" id="phone" name="phone" placeholder="Votre numéro">
           </div>
           <div class="field">
-            <label for="message">Message*</label>
-            <textarea id="message" name="message" rows="5" required placeholder="Décrivez votre besoin (type de matériaux, quantité, délai...)"></textarea>
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Décrivez votre besoin..."></textarea>
           </div>
-          <button class="btn btn-primary" type="submit">Envoyer ma demande</button>
-          <p id="formMsg" class="form-msg" role="status" aria-live="polite"></p>
+          <button type="submit" class="btn btn-primary">Envoyer ma demande</button>
+          <p id="formMsg" class="form-msg"></p>
         </form>
       </div>
     </section>
@@ -236,7 +677,7 @@
 
   <!-- Footer -->
   <footer class="site-footer">
-    <div class="container footer-inner">
+    <div class="footer-inner">
       <p>© <span id="year"></span> Fournix — Tous droits réservés.</p>
       <nav class="footer-nav">
         <a href="#services">Services</a>
@@ -248,9 +689,54 @@
   </footer>
 
   <script>
-    // Année automatique dans le footer
+    // Année automatique
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Menu mobile toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
     
+    if (menuToggle && mainNav) {
+      menuToggle.addEventListener('click', function() {
+        mainNav.classList.toggle('open');
+        const expanded = mainNav.classList.contains('open');
+        menuToggle.setAttribute('aria-expanded', expanded);
+      });
+    }
+
+    // Fermer le menu quand on clique sur un lien
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', false);
+      });
+    });
+
+    // Thème clair/sombre
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.remove('light-theme');
+      body.classList.add('dark-theme');
+      themeToggle.textContent = '☀️';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      if (body.classList.contains('light-theme')) {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '☀️';
+      } else {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+        localStorage.setItem('theme', 'light');
+        themeToggle.textContent = '🌙';
+      }
+    });
+
     // Gestion du formulaire avec Formspree
     const form = document.getElementById('contactForm');
     const formMsg = document.getElementById('formMsg');
@@ -259,6 +745,7 @@
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
         submitBtn.disabled = true;
         submitBtn.textContent = 'Envoi en cours...';
         
@@ -274,17 +761,16 @@
             formMsg.style.color = 'green';
             form.reset();
           } else {
-            formMsg.textContent = '❌ Erreur : veuillez réessayer ou nous contacter directement par téléphone.';
+            formMsg.textContent = '❌ Erreur. Veuillez réessayer ou nous contacter par téléphone.';
             formMsg.style.color = 'red';
           }
         } catch (error) {
-          formMsg.textContent = '❌ Erreur de connexion. Vérifiez votre connexion internet.';
+          formMsg.textContent = '❌ Erreur de connexion. Vérifiez votre connexion.';
           formMsg.style.color = 'red';
         }
         
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Envoyer ma demande';
-        
+        submitBtn.textContent = originalText;
         setTimeout(() => { formMsg.textContent = ''; }, 5000);
       });
     }
