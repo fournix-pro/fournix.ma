@@ -399,6 +399,14 @@ input:focus, textarea:focus {
   border: 0;
 }
 
+.logo img {
+    max-height: 40px;
+    width: auto;
+}
+.brand {
+    font-weight: bold;
+    color: #e67e22;  /* Orange */
+}
 /* ======= Theme colors for quick niche changes ======= */
 /*
   Pour décliner ce template sur d'autres niches, changez simplement la variable --brand et --brand-600 ici.
