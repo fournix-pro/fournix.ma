@@ -24,9 +24,9 @@ a {
 
 /* ======= Color variables (dark by default) ======= */
 :root {
-  --brand: #e67e22;      
-  --brand-600: #d35400; 
-  --secondary: #c0392b;
+  --brand: #f39c12;      
+  --brand-600: #e67e22;  
+  --secondary: #e74c3c;
   --bg: #0b0c0e;
   --fg: #e7e9ee;
   --muted: #aab0bc;
