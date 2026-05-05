@@ -22,7 +22,6 @@ body{
 :root{
   --primary:#c55a2c;
   --secondary:#a6471f;
-  --light:#f5efe6;
   --white:#fff;
   --shadow:0 10px 30px rgba(0,0,0,0.08);
 }
@@ -51,13 +50,13 @@ header{
 }
 
 .logo{
-  font-size:1.5rem;
+  font-size:1.6rem;
   font-weight:700;
   color:var(--primary);
 }
 
 nav a{
-  margin:0 15px;
+  margin:0 12px;
   text-decoration:none;
   color:#333;
   font-weight:500;
@@ -73,15 +72,21 @@ nav a:hover{
   padding:10px 20px;
   border-radius:30px;
   text-decoration:none;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 10px 20px rgba(0,0,0,0.15);
 }
 
 /* ===== HERO ===== */
 .hero{
   display:flex;
   align-items:center;
-  min-height:85vh;
+  min-height:90vh;
   background:linear-gradient(to right, rgba(245,239,230,0.95), rgba(245,239,230,0.6)),
-  url('assets/hero.jpg') center/cover;
+  url('https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg') center/cover;
 }
 
 .hero-content{
@@ -96,10 +101,6 @@ nav a:hover{
 .hero p{
   margin-bottom:25px;
   color:#555;
-}
-
-.hero .btn{
-  margin-right:10px;
 }
 
 /* ===== FEATURES ===== */
@@ -140,11 +141,11 @@ nav a:hover{
   border-radius:12px;
   overflow:hidden;
   box-shadow:var(--shadow);
-  transition:.3s;
+  transition:0.4s;
 }
 
 .card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-8px) scale(1.02);
 }
 
 .card img{
@@ -212,6 +213,18 @@ footer{
   padding:20px;
 }
 
+/* ===== ANIMATIONS ===== */
+.fade-up{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+
+.fade-up.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
   .hero h1{font-size:2rem}
@@ -234,23 +247,22 @@ footer{
       <a href="#services">Services</a>
       <a href="#about">À propos</a>
       <a href="#contact">Contact</a>
-      <a href="#contact" class="btn">Demander un devis</a>
+      <a href="#contact" class="btn">Devis</a>
     </nav>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="container hero-content">
+  <div class="container hero-content fade-up">
     <h1>Fournix : matériaux et machines pour la construction</h1>
     <p>Nous fournissons des matériaux de construction, import-export et machines de travaux avec des solutions sur mesure.</p>
     <a href="#contact" class="btn">Nous contacter</a>
-    <a href="#services" class="btn" style="background:#fff;color:#c55a2c;">Nos services</a>
   </div>
 </section>
 
 <!-- FEATURES -->
-<div class="container features">
+<div class="container features fade-up">
   <div class="feature">Produits de qualité</div>
   <div class="feature">Réseau international</div>
   <div class="feature">Machines performantes</div>
@@ -259,12 +271,12 @@ footer{
 
 <!-- SERVICES -->
 <section id="services" class="services container">
-  <h2 class="section-title">Nos domaines d’expertise</h2>
+  <h2 class="section-title fade-up">Nos domaines d’expertise</h2>
 
-  <div class="cards">
+  <div class="cards fade-up">
 
     <div class="card">
-      <img src="assets/materiaux.jpg">
+      <img src="https://images.pexels.com/photos/1112496/pexels-photo-1112496.jpeg">
       <div class="card-content">
         <h3>Matériaux de construction</h3>
         <p>Large gamme de matériaux pour tous vos projets.</p>
@@ -272,7 +284,7 @@ footer{
     </div>
 
     <div class="card">
-      <img src="assets/import.jpg">
+      <img src="https://images.pexels.com/photos/1427541/pexels-photo-1427541.jpeg">
       <div class="card-content">
         <h3>Import - Export</h3>
         <p>Solutions fiables et partenaires internationaux.</p>
@@ -280,7 +292,7 @@ footer{
     </div>
 
     <div class="card">
-      <img src="assets/machines.jpg">
+      <img src="https://images.pexels.com/photos/2760243/pexels-photo-2760243.jpeg">
       <div class="card-content">
         <h3>Machines de construction</h3>
         <p>Équipements performants pour vos chantiers.</p>
@@ -291,7 +303,7 @@ footer{
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="container about">
+<section id="about" class="container about fade-up">
   <div>
     <h2>À propos de Fournix</h2>
     <p>
@@ -303,11 +315,11 @@ footer{
       compétitives et adaptées à leurs besoins.
     </p>
   </div>
-  <img src="assets/about.jpg">
+  <img src="https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg">
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact container">
+<section id="contact" class="contact container fade-up">
   <h2 class="section-title">Contactez-nous</h2>
 
   <div class="contact-box">
@@ -333,6 +345,21 @@ footer{
 <footer>
   <p>© 2024 Fournix - Tous droits réservés</p>
 </footer>
+
+<!-- SCRIPT ANIMATION -->
+<script>
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+document.querySelectorAll('.fade-up').forEach(el=>{
+  observer.observe(el);
+});
+</script>
 
 </body>
 </html>
