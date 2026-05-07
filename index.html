@@ -341,7 +341,42 @@ footer{
   opacity:1;
   transform:translateY(0);
 }
+.icon-badge{
+  width:72px;
+  height:72px;
+  margin:0 auto 15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
 
+  border-radius:18px;
+
+  /* 💡 fond clair premium */
+  background:linear-gradient(145deg, #fff, #f3e9e2);
+
+  color:var(--primary);
+
+  border:1px solid rgba(212,97,47,0.15);
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.06);
+
+  transition:0.35s ease;
+}
+
+.feature:hover .icon-badge{
+  transform:translateY(-6px) scale(1.05);
+
+  /* hover orange doux */
+  background:linear-gradient(135deg, var(--primary), var(--secondary));
+
+  color:#fff;
+
+  border-color:transparent;
+
+  box-shadow:0 15px 30px rgba(212,97,47,0.25);
+}
 @keyframes fadeUp{
   from{
     opacity:0;
@@ -430,25 +465,25 @@ footer{
 <div class="container features fade-up">
 
   <div class="feature">
-    <img src="https://cdn-icons-png.flaticon.com/512/3058/3058972.png" width="55" style="margin-bottom:15px;">
+    <div class="icon-badge">⚒️</div>
     <h3>Produits de qualité</h3>
     <p>Des matériaux fiables pour des constructions durables.</p>
   </div>
 
   <div class="feature">
-    <img src="https://cdn-icons-png.flaticon.com/512/3125/3125713.png" width="55" style="margin-bottom:15px;">
+    <div class="icon-badge">🌍</div>
     <h3>Réseau international</h3>
     <p>Partenaires et fournisseurs à l’échelle mondiale.</p>
   </div>
 
   <div class="feature">
-    <img src="https://cdn-icons-png.flaticon.com/512/1995/1995470.png" width="55" style="margin-bottom:15px;">
+    <div class="icon-badge">🚜</div>
     <h3>Machines performantes</h3>
     <p>Équipements robustes pour vos chantiers.</p>
   </div>
 
   <div class="feature">
-    <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" width="55" style="margin-bottom:15px;">
+    <div class="icon-badge">🤝</div>
     <h3>Service client dédié</h3>
     <p>Une équipe réactive et à votre écoute.</p>
   </div>
@@ -469,7 +504,7 @@ footer{
       <div class="card-content">
         <h3>Matériaux de construction</h3>
         <p>
-          Nous fournissons une large gamme de matériaux de construction de haute qualité.
+          Nous fournissons une large gamme de matériaux de construction de haute qualité pour tous types de projets.
         </p>
       </div>
     </div>
@@ -479,7 +514,7 @@ footer{
       <div class="card-content">
         <h3>Import - Export</h3>
         <p>
-          Solutions fiables pour l’importation et l’exportation de produits.
+          Nous facilitons l’importation et l’exportation de produits et équipements avec un service fiable et efficace.
         </p>
       </div>
     </div>
@@ -489,7 +524,7 @@ footer{
       <div class="card-content">
         <h3>Machines de construction</h3>
         <p>
-          Machines et équipements performants pour tous vos chantiers.
+          Nous achetons et ventons des machines de travaux performantes pour répondre aux besoins de vos chantiers.
         </p>
       </div>
     </div>
@@ -506,13 +541,16 @@ footer{
     <div>
       <h2>À propos de Fournix</h2>
       <p>
-        Fournix est une entreprise spécialisée dans la fourniture de matériaux,
-        l’import-export et la vente de machines de construction.
+        Fournix est une entreprise marocaines spécialisée dans la fourniture de matériaux de construction,
+        les solutions d’import-export et la vente de machines de construction.
+      </p>
+      <p>
+        Grace à nostre expertise, notre réseau de partenaires et notre engagement envers la qualité,
+        nous accompagnons les professionnels du batiment dans la réussite de leurs projets.
       </p>
 
       <p>
-        Nous accompagnons nos clients avec des solutions fiables,
-        compétitives et adaptées à leurs besoins.
+        Notre priorité : la fiabilité, la flexibilité et des solutions adaptées aux besoins spécifiques de chaque client.
       </p>
 
       <a href="#contact" class="btn">Travailler avec nous</a>
