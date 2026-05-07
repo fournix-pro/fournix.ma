@@ -59,11 +59,23 @@ header{
 }
 
 .logo{
-  font-size:1.8rem;
-  font-weight:700;
-  color:var(--primary);
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
+.logo img{
+  height:45px;
+  width:auto;
+  display:block;
+}
+
+.logo span{
+  font-size:1.6rem;
+  font-weight:700;
+  color:#000; /* noir */
+  letter-spacing:0.5px;
+}
 nav{
   display:flex;
   align-items:center;
@@ -462,7 +474,8 @@ footer{
   <div class="container navbar">
     <div class="logo">
   <img src="logo.png" alt="Fournix">
-   </div>
+  <span>Fournix</span>
+  </div>
 
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
