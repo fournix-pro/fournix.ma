@@ -46,7 +46,11 @@ header{
   backdrop-filter:blur(10px);
   box-shadow:var(--shadow);
 }
-
+.logo img{
+  height:45px;   /* ajuste la taille */
+  width:auto;
+  display:block;
+}
 .navbar{
   display:flex;
   justify-content:space-between;
@@ -456,7 +460,9 @@ footer{
 
 <header>
   <div class="container navbar">
-    <div class="logo">Fournix</div>
+    <div class="logo">
+  <img src="logo.png" alt="Fournix">
+   </div>
 
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
