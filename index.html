@@ -58,59 +58,70 @@ body{
 /* HEADER */
 header{
   position:fixed;
-  width:100%;
-  height:85px;
-  overflow:hidden;
   top:0;
+  left:0;
+  width:100%;
   z-index:1000;
+
   background:rgba(255,255,255,0.96);
   backdrop-filter:blur(10px);
-  box-shadow:var(--shadow);
+
+  box-shadow:0 5px 20px rgba(0,0,0,0.06);
 }
 
+/* navbar */
 .navbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  height:85px; /* hauteur propre */
+
+  height:82px; /* header fin */
 }
 
+/* LOGO */
 .logo{
   display:flex;
   align-items:center;
 }
 
+/* image logo */
 .logo img{
-  height:95px; /* agrandir le logo */
+  height:120px; /* agrandir FOURNIX */
   width:auto;
+
   object-fit:contain;
   display:block;
+
+  transform:scale(1.35); /* zoom sans agrandir header */
+  transform-origin:left center;
 }
 
 
-
+/* navigation */
 nav{
   display:flex;
   align-items:center;
-  gap:20px;
+  gap:32px;
 }
 
 nav a{
   text-decoration:none;
   color:#333;
-  font-weight:500;
+  font-weight:600;
+  font-size:1.05rem;
   transition:.3s;
   position:relative;
 }
 
+/* effet hover */
 nav a::after{
   content:'';
   position:absolute;
   left:0;
-  bottom:-5px;
+  bottom:-6px;
   width:0;
   height:2px;
-  background:var(--primary);
+  background:#d4612f;
   transition:.3s;
 }
 
@@ -118,25 +129,23 @@ nav a:hover::after{
   width:100%;
 }
 
+
+
+/* bouton */
 .btn{
-  background:var(--primary);
+  background:#d4612f;
   color:#fff;
-  padding:12px 22px;
-  border-radius:30px;
+  padding:14px 26px;
+  border-radius:40px;
   text-decoration:none;
-  transition:.4s;
-  display:inline-block;
-  border:none;
-  cursor:pointer;
   font-weight:600;
+  transition:.3s;
 }
 
 .btn:hover{
-  background:var(--secondary);
-  transform:translateY(-3px);
-  box-shadow:0 12px 25px rgba(212,97,47,0.35);
+  background:#b84f22;
+  transform:translateY(-2px);
 }
-
 .menu-toggle{
   display:none;
   font-size:2rem;
@@ -145,13 +154,17 @@ nav a:hover::after{
 
 /* HERO */
 .hero{
+  padding-top:90px; /* évite que header cache le contenu */
+
   min-height:100vh;
-  padding-top:85px; /* espace pour éviter que le header cache le texte */
   display:flex;
   align-items:center;
+
   background:
-  linear-gradient(to right, rgba(245,239,230,0.95), rgba(245,239,230,0.4)),
-  url('hero.png') center/cover;
+  linear-gradient(to right,
+  rgba(245,239,230,0.92),
+  rgba(245,239,230,0.35)),
+  url('hero.png') center/cover no-repeat;
 }
 
 .hero-content{
