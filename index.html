@@ -61,9 +61,16 @@ header{
   width:100%;
   top:0;
   z-index:1000;
-  background:rgba(255,255,255,0.95);
+  background:rgba(255,255,255,0.96);
   backdrop-filter:blur(10px);
   box-shadow:var(--shadow);
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  height:85px; /* hauteur propre */
 }
 
 .logo{
@@ -72,17 +79,12 @@ header{
 }
 
 .logo img{
-  height:140px;
+  height:60px; /* taille parfaite */
   width:auto;
   object-fit:contain;
   display:block;
 }
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  min-height:110px;
-}
+
 
 
 nav{
@@ -142,6 +144,7 @@ nav a:hover::after{
 /* HERO */
 .hero{
   min-height:100vh;
+  padding-top:85px; /* espace pour éviter que le header cache le texte */
   display:flex;
   align-items:center;
   background:
